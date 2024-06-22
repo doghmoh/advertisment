@@ -1,0 +1,114 @@
+const weatherData = {
+  0: {
+    description: "Clear sky",
+    iconClass: "fas fa-sun",
+  },
+  1: {
+    description: "Mainly clear",
+    iconClass: "fas fa-sun",
+  },
+  2: {
+    description: "Partly cloudy",
+    iconClass: "fas fa-cloud-sun",
+  },
+  3: {
+    description: "Overcast",
+    iconClass: "fas fa-cloud",
+  },
+  45: {
+    description: "Fog and depositing rime fog",
+    iconClass: "fas fa-smog",
+  },
+  48: {
+    description: "Fog and depositing rime fog",
+    iconClass: "fas fa-smog",
+  },
+  51: {
+    description: "Drizzle: Light intensity",
+    iconClass: "fas fa-cloud-showers-heavy",
+  },
+  53: {
+    description: "Drizzle: Moderate intensity",
+    iconClass: "fas fa-cloud-showers-heavy",
+  },
+  55: {
+    description: "Drizzle: Dense intensity",
+    iconClass: "fas fa-cloud-showers-heavy",
+  },
+  56: {
+    description: "Freezing Drizzle: Light intensity",
+    iconClass: "fas fa-cloud-showers-heavy",
+  },
+  57: {
+    description: "Freezing Drizzle: Dense intensity",
+    iconClass: "fas fa-cloud-showers-heavy",
+  },
+  61: {
+    description: "Rain: Slight intensity",
+    iconClass: "fas fa-cloud-showers-heavy",
+  },
+  63: {
+    description: "Rain: Moderate intensity",
+    iconClass: "fas fa-cloud-showers-heavy",
+  },
+  65: {
+    description: "Rain: Heavy intensity",
+    iconClass: "fas fa-cloud-showers-heavy",
+  },
+  66: {
+    description: "Freezing Rain: Light intensity",
+    iconClass: "fas fa-cloud-showers-heavy",
+  },
+  67: {
+    description: "Freezing Rain: Heavy intensity",
+    iconClass: "fas fa-cloud-showers-heavy",
+  },
+  71: {
+    description: "Snowfall: Slight intensity",
+    iconClass: "fas fa-snowflake",
+  },
+  73: {
+    description: "Snowfall: Moderate intensity",
+    iconClass: "fas fa-snowflake",
+  },
+  75: {
+    description: "Snowfall: Heavy intensity",
+    iconClass: "fas fa-snowflake",
+  },
+  77: {
+    description: "Snow grains",
+    iconClass: "fas fa-snowflake",
+  },
+  80: {
+    description: "Rain showers: Slight intensity",
+    iconClass: "fas fa-cloud-showers-heavy",
+  },
+  81: {
+    description: "Rain showers: Moderate intensity",
+    iconClass: "fas fa-cloud-showers-heavy",
+  },
+  82: {
+    description: "Rain showers: Violent intensity",
+    iconClass: "fas fa-cloud-showers-heavy",
+  },
+  85: {
+    description: "Snow showers: Slight intensity",
+    iconClass: "fas fa-snowflake",
+  },
+  86: {
+    description: "Snow showers: Heavy intensity",
+    iconClass: "fas fa-snowflake",
+  },
+  95: {
+    description: "Thunderstorm: Slight",
+    iconClass: "fas fa-bolt",
+  },
+  96: {
+    description: "Thunderstorm with slight hail",
+    iconClass: "fas fa-bolt",
+  },
+  99: {
+    description: "Thunderstorm with heavy hail",
+    iconClass: "fas fa-bolt",
+  },
+};
