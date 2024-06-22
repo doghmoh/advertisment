@@ -56,8 +56,8 @@
 
 
     <div class="right-side">
-        <div class="elfsight-app-3f7e0165-ce2c-4f76-9b75-cfec01a6c7d4 sidebar-item" style="padding: 0; margin:10px 0; overflow: scroll;"
-            data-elfsight-app-lazy></div>
+        <div class="elfsight-app-3f7e0165-ce2c-4f76-9b75-cfec01a6c7d4 sidebar-item"
+            style="padding: 0; margin:10px 0; overflow: scroll;" data-elfsight-app-lazy></div>
 
         <div class="card-islamic sidebar-item">
             <!-- <h1>أذكار المسلم</h1> -->
@@ -133,103 +133,6 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             function refreshContent() {
-                var leftSideElement = document.querySelector('.left-side');
-                leftSideElement.innerHTML = data.result;
-                const mediaItems = document.querySelectorAll('.media-item');
-                let currentIndex = 0;
-                let interval;
-
-                function playNextMedia() {
-                    console.log(currentIndex + mediaItems[currentIndex])
-                    clearInterval(interval);
-                    mediaItems[currentIndex].classList.remove('active');
-                    //console.log('iam here removing');
-                    currentIndex = (currentIndex + 1) % mediaItems.length;
-                    mediaItems[currentIndex].classList.add('active');
-                    console.log('iam here adding');
-
-
-                    if (mediaItems[currentIndex].tagName === 'VIDEO') {
-                        const video = mediaItems[currentIndex];
-                        video.currentTime = 0;
-
-                        video.play().catch(error => {
-                            console.log('Video playback error:', error);
-                        });
-
-                        video.onended = () => {
-                            interval = setInterval(playNextMedia, 30000); // Display each media for 5 seconds
-                        };
-                    } else if (mediaItems[currentIndex].tagName === 'IMG') {
-                        if (mediaItems[currentIndex].classList.contains('newslogo')) { interval = setInterval(playNextMedia, 3000); }
-                        else {
-                            interval = setInterval(playNextMedia, 30000); // Display each media for 5 seconds
-                        }
-                    }
-                }
-
-                interval = setInterval(playNextMedia, 5000); // Start with a 5-second interval
-
-                // Optional: Pause and restart the video when it's not the active media
-                function pauseVideo() {
-                    const video = mediaItems[currentIndex];
-                    if (video.tagName === 'VIDEO' && !video.paused) {
-                        video.pause();
-                    }
-                }
-
-                function restartVideo() {
-                    const video = mediaItems[currentIndex];
-                    if (video.tagName === 'VIDEO' && video.paused) {
-                        video.play();
-                    }
-                }
-
-
-                function updateTime() {
-                    const now = new Date();
-                    const timeElement = document.getElementById('time');
-                    timeElement.textContent = now.toLocaleTimeString();
-                }
-
-                updateTime()
-                setInterval(updateTime, 1000);
-                function delay(seconds) {
-                    return new Promise(res => {
-                        setTimeout(resolve, seconds * 1000);
-                    });
-                }
-                const newsItems = document.querySelectorAll('.news');
-                let currentIndexx = 0;
-                let interval2;
-                // slide-in first news for 4s and slide-out.
-                newsItems[currentIndexx].classList.add('animate-slide-in');
-                function displayNextNews() {
-                    clearInterval(interval2);
-                    if (currentIndexx < newsItems.length) {
-                        // last news fade-out 
-                        newsItems[currentIndexx].classList.remove('animate-slide-in');
-                        newsItems[currentIndexx].classList.add('inactive');
-
-                        currentIndexx = (currentIndexx + 1) % newsItems.length;
-                        //next news fade in
-                        newsItems[currentIndexx].classList.remove('inactive');
-                        newsItems[currentIndexx].classList.add('animate-slide-in');
-
-                        //show the current news dor 5s and repeat
-                        interval2 = setInterval(displayNextNews, 5000);
-                    }
-                }
-
-
-
-
-
-                // Start the animation
-                interval2 = setInterval(displayNextNews, 5000);
-
-                // Start the animation
-                interval3 = setInterval(displayNextadkar, 10000);
                 fetch("/show_advertisement_video_images_realtime/")
                     .then(function (response) {
                         if (response.ok) {
@@ -239,8 +142,86 @@
                         }
                     })
                     .then(function (data) {
+                        const leftSideElement = document.querySelector('.left-side');
+                        const existingMediaItems = Array.from(document.querySelectorAll('.media-item'));
+                        const newMediaItemsHTML = data.result;
 
+                        // Create a temporary container to parse the new HTML
+                        const tempContainer = document.createElement('div');
+                        tempContainer.innerHTML = newMediaItemsHTML;
 
+                        const newMediaItems = Array.from(tempContainer.querySelectorAll('.media-item'));
+                        let currentIndex = existingMediaItems.findIndex(item => item.classList.contains('active'));
+                        let interval;
+
+                        function playNextMedia() {
+                            clearInterval(interval);
+                            existingMediaItems[currentIndex].classList.remove('active');
+                            currentIndex = (currentIndex + 1) % existingMediaItems.length;
+                            existingMediaItems[currentIndex].classList.add('active');
+
+                            if (existingMediaItems[currentIndex].tagName === 'VIDEO') {
+                                const video = existingMediaItems[currentIndex];
+                                video.currentTime = 0;
+
+                                video.play().catch(error => {
+                                    console.log('Video playback error:', error);
+                                });
+
+                                video.onended = () => {
+                                    interval = setInterval(playNextMedia, 30000);
+                                };
+                            } else if (existingMediaItems[currentIndex].tagName === 'IMG') {
+                                if (existingMediaItems[currentIndex].classList.contains('newslogo')) {
+                                    interval = setInterval(playNextMedia, 3000);
+                                } else {
+                                    interval = setInterval(playNextMedia, 30000);
+                                }
+                            }
+                        }
+
+                        function updateMediaItems() {
+                            existingMediaItems.forEach((item, index) => {
+                                const newItem = newMediaItems[index];
+                                if (newItem && item.outerHTML !== newItem.outerHTML) {
+                                    item.outerHTML = newItem.outerHTML;
+                                }
+                            });
+                        }
+
+                        updateMediaItems();
+                        interval = setInterval(playNextMedia, 5000);
+
+                        function updateTime() {
+                            const now = new Date();
+                            const timeElement = document.getElementById('time');
+                            timeElement.textContent = now.toLocaleTimeString();
+                        }
+
+                        updateTime();
+                        setInterval(updateTime, 1000);
+
+                        const newsItems = document.querySelectorAll('.news');
+                        let currentIndexx = 0;
+                        let interval2;
+
+                        newsItems[currentIndexx].classList.add('animate-slide-in');
+
+                        function displayNextNews() {
+                            clearInterval(interval2);
+                            if (currentIndexx < newsItems.length) {
+                                newsItems[currentIndexx].classList.remove('animate-slide-in');
+                                newsItems[currentIndexx].classList.add('inactive');
+
+                                currentIndexx = (currentIndexx + 1) % newsItems.length;
+                                newsItems[currentIndexx].classList.remove('inactive');
+                                newsItems[currentIndexx].classList.add('animate-slide-in');
+
+                                interval2 = setInterval(displayNextNews, 5000);
+                            }
+                        }
+
+                        interval2 = setInterval(displayNextNews, 5000);
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -250,6 +231,7 @@
             // Refresh content initially
             refreshContent();
             setInterval(refreshContent, 1200000);
+
         });
 
 
