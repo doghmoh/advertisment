@@ -6,18 +6,12 @@
     <link rel="stylesheet" href="static/1.css" type="text/css">
     <link rel="stylesheet" href="static/font/almarai.css" type="text/css">
     <title></title>
-
-    <style>
-        /* Apply the CSS rule to hide the cursor */
-        body {
-            cursor: none;
-        }
-    </style>
 </head>
 
 <body>
 
     <div class="left-side">
+      
         <div id="gallery">
             <div id="media-container">
                 <img src="https://picsum.photos/id/1076/600/400" alt="" class="media-item active">
@@ -90,8 +84,6 @@
         </a>
 
     </div>
-    <!-- <div id="fullscreen-instruction">Click the button to enter fullscreen mode</div> -->
-    <!-- <button id="fullscreen-button">Go Fullscreen</button> -->
     <script>
         const adkarItems = document.querySelectorAll('.adkar-item');
         let currentIndex = 0;
@@ -131,6 +123,8 @@
     </script>
 
     <script>
+
+
         document.addEventListener("DOMContentLoaded", function () {
             function refreshContent() {
                 fetch("/show_advertisement_video_images_realtime/")
@@ -246,6 +240,51 @@
         // Call the function to initiate the refresh timer
         refreshAfterSixHours();
 
+        const elementToToggleFullscreen = document.getElementsByTagName('body')[0]; // Get the body element
+
+        let isFullscreen = false;
+
+        document.addEventListener('click', function () {
+            if (!isFullscreen) {
+                if (elementToToggleFullscreen.requestFullscreen) {
+                    elementToToggleFullscreen.requestFullscreen();
+                } else if (elementToToggleFullscreen.mozRequestFullScreen) { /* Firefox */
+                    elementToToggleFullscreen.mozRequestFullScreen();
+                } else if (elementToToggleFullscreen.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                    elementToToggleFullscreen.webkitRequestFullscreen();
+                } else if (elementToToggleFullscreen.msRequestFullscreen) { /* IE/Edge */
+                    elementToToggleFullscreen.msRequestFullscreen();
+                }
+
+                document.body.classList.add('fullscreen'); // Add fullscreen class to body
+                isFullscreen = true;
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) { /* Firefox */
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { /* IE/Edge */
+                    document.msExitFullscreen();
+                }
+
+                document.body.classList.remove('fullscreen'); // Remove fullscreen class from body
+                isFullscreen = false;
+            }
+        });
+
+        const opensidebar = document.getElementById('opensidebar');
+        const rightside = document.querySelector('.right-side');
+
+        opensidebar.addEventListener('click', function () {
+            // Toggle display style of rightside
+            if (rightside.style.display === 'none') {
+                rightside.style.display = ''; // or 'block', 'flex', etc. depending on the desired display mode
+            } else {
+                rightside.style.display = 'none';
+            }
+        });
 
     </script>
 

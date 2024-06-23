@@ -1,3 +1,4 @@
+/* Your existing CSS code */
 html,
 body {
     margin: 0;
@@ -10,6 +11,19 @@ body {
     height: 100vh;
 }
 
+#opensidebar {
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    right: 0;
+    width: 25px;
+    height: 25px;
+    display: none;
+    background-color: white;
+}
+
+
+
 .right-side {
     flex: 1 1 10%;
     order: 2;
@@ -20,17 +34,20 @@ body {
     padding: 0 10px;
     width: 10%;
 }
+
 .sidebar-item {
     margin: 5px 0;
     text-align: center;
     border-radius: 4px;
 }
-.eapp-weather-weather-component{
+
+.eapp-weather-weather-component {
     width: 100%;
     align-self: center;
     height: 500px;
 }
-.eapp-weather-weather-component{
+
+.eapp-weather-weather-component {
     max-width: 100% !important;
 }
 
@@ -53,10 +70,11 @@ body {
         font-size: 1.5rem;
         padding: 20px;
     }
+
     .sidebar-item:nth-child(1) {
         flex: 1 1 90%;
     }
-    
+
     .sidebar-item:nth-child(2),
     .sidebar-item:nth-child(3) {
         flex: 1 1 5%;
@@ -299,12 +317,16 @@ table.futur-weather tr td {
     z-index: 99;
     flex: 2;
     order: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-islamic h1 {
     margin-bottom: 40px;
     font-size: 35px;
     font-weight: bold;
+    color: #fff;
 }
 
 .card-islamic .adkar-item {
@@ -339,13 +361,16 @@ table.futur-weather tr td {
     order: 3;
     width: 100%;
     align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
 }
 
 .copyright {
     font-size: 25px;
     text-align: center;
-    margin-top: 20px;
-    flex: 1;
+    padding: 20px;
 }
 
 .logo1 {
@@ -353,4 +378,139 @@ table.futur-weather tr td {
     margin: 10px auto;
     width: 60px;
     height: auto;
+}
+
+/* Media Queries */
+
+/* Mobile Devices (Small screens) */
+@media (max-width: 600px) {
+
+    html,
+    body {
+        flex-direction: row;
+    }
+
+    #opensidebar {
+        display: unset;
+    }
+
+
+    .right-side {
+        width: 20%;
+        display: none;
+    }
+
+    .left-side {
+        flex: 1;
+    }
+
+    #gallery,
+    #news-side {
+        width: 100%;
+    }
+
+    .sidebar-item {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .news {
+        font-size: 20px;
+    }
+
+    .news-item,
+    .logo {
+        font-size: 14px;
+    }
+
+    .card-islamic h1,
+    .card-islamic .adkar-item,
+    .time {
+        font-size: 20px;
+    }
+
+    .card-time {
+        padding: 10px;
+    }
+}
+
+/* Tablets (Medium screens) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .right-side {
+        width: 20%;
+    }
+
+    .sidebar-item {
+        font-size: 1.2rem;
+        padding: 15px;
+    }
+
+    .news {
+        font-size: 25px;
+    }
+
+    .news-item,
+    .logo {
+        font-size: 16px;
+    }
+
+    .card-islamic h1,
+    .card-islamic .adkar-item,
+    .time {
+        font-size: 25px;
+    }
+}
+
+/* Large screens (Desktops and larger laptops) */
+@media (min-width: 1025px) {
+    .right-side {
+        width: 25%;
+    }
+
+    .sidebar-item {
+        font-size: 1.4rem;
+        padding: 20px;
+    }
+
+    .news {
+        font-size: 30px;
+    }
+
+    .news-item,
+    .logo {
+        font-size: 18px;
+    }
+
+    .card-islamic h1,
+    .card-islamic .adkar-item,
+    .time {
+        font-size: 30px;
+    }
+}
+
+/* TV screens */
+@media (min-width: 1920px) {
+    .right-side {
+        width: 20%;
+    }
+
+    .sidebar-item {
+        font-size: 2rem;
+        padding: 30px;
+    }
+
+    .news {
+        font-size: 40px;
+    }
+
+    .news-item,
+    .logo {
+        font-size: 22px;
+    }
+
+    .card-islamic h1,
+    .card-islamic .adkar-item,
+    .time {
+        font-size: 40px;
+    }
 }
