@@ -101,7 +101,7 @@ body {
     order: 2;
     display: flex;
     flex-direction: column;
-}
+};
 
 video {
     width: 100%;
@@ -134,7 +134,8 @@ video {
     background: linear-gradient(to right, rgb(1, 6, 148), rgb(37, 4, 81));
     color: white;
     width: 100%;
-    flex: 1;
+    flex: 1;  padding: 15px;
+
 }
 
 .news-ticker {
@@ -145,6 +146,7 @@ video {
     background-color: bisque;
     z-index: 99;
     flex: 1;
+    display: contents;
 }
 
 .news {
@@ -217,7 +219,7 @@ video {
     font-size: 35px;
     font-weight: 200;
     padding: 10px;
-    display: inline-block;
+    display: contents;
 }
 
 .logo {
@@ -226,7 +228,7 @@ video {
     font-size: 18px;
     font-weight: 200;
     padding: 10px;
-    display: inline-block;
+    display: contents;
 }
 
 .news-item:last-child {
@@ -523,9 +525,24 @@ table.futur-weather tr td {
         padding: 10px;
     }
 
-    .cvBsnK, .cvBsnK *{
+    .cvBsnK,
+    .cvBsnK * {
         font-size: 10px !important;
     }
+
+    .eapp-weather-daily-item-component {
+        padding: 3px 8px !important;
+    }
+
+    .eapp-weather-forecast-component .menu-item-wrapper:first-child {
+        padding-left: 11px !important;
+    }
+
+    .eapp-weather-forecast-component .menu-item-wrapper {
+        padding: 0 2px !important;
+        padding-left: 2px !important;
+    }
+
 
     .sidebar-item:nth-child(1) {
         flex: 1 1 90%;
@@ -538,17 +555,19 @@ table.futur-weather tr td {
         height: 20%;
     }
 
-    .card-islamic h1, .card-islamic .adkar-item{
+    .card-islamic h1,
+    .card-islamic .adkar-item {
         font-size: 12px;
     }
 
 
-    #time{
-        font-size: 20px !important; 
+    #time {
+        font-size: 30px !important;
     }
+
     .copyright {
         font-size: 14px;
         text-align: center;
-      }
+    }
 
 }
